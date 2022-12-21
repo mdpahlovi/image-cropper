@@ -1,7 +1,6 @@
-const wrapper = document.querySelector(".wrapper");
+const imageBox = document.getElementById("image_box");
 const modalContainer = document.getElementById("modal-container");
 const inputField = document.querySelector("#input_field");
-const cancelBtn = document.querySelector("#cancel-btn i");
 const profileContainer = document.querySelector("#profile-container");
 const profile = document.querySelector("#profile");
 const cropBtn = document.querySelector("#crop-btn");
@@ -23,23 +22,24 @@ inputField.addEventListener("change", (event) => {
         modalContainer.style.display = "flex";
         const url = window.URL.createObjectURL(new Blob([file], { type: "image/jpg" }));
         profile.src = url;
-        wrapper.classList.add("active");
+        imageBox.classList.add("active");
 
         // Crop image
         options = {
-            aspectRatio: 0,
+            aspectRatio: 1,
             viewMode: 0,
         };
-
         const cropper = new Cropper(profile, options);
         cropBtn.addEventListener("click", () => {
             profileContainer.style.display = "none";
             cropBtn.style.display = "none";
-            maskBtn.style.display = "flex";
+            maskBtn.style.display = "grid";
+            maskDone.style.display = "block";
             const url = cropper.getCroppedCanvas().toDataURL("image/jpeg");
             modifiedProfile.innerHTML = `<img id="cropped_profile" src="${url}" alt="" />`;
         });
 
+        // Mask Image
         hardMask.addEventListener("click", () => {
             if (modifiedProfile.classList) {
                 modifiedProfile.classList = [];
@@ -67,8 +67,8 @@ inputField.addEventListener("change", (event) => {
 
         maskDone.addEventListener("click", () => {
             modalContainer.style.display = "none";
-            document.querySelector("#content").classList.add("hidden");
-            wrapper.appendChild(modifiedProfile);
+            document.getElementById("is_noimage").style.display = "none";
+            imageBox.appendChild(modifiedProfile);
         });
     }
 });

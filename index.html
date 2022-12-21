@@ -2,24 +2,26 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Preview Image Before Upload | CodingNepal</title>
+        <title>Image Cropper</title>
+        <link rel="shortcut icon" href="./asset/favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" href="style.css" />
         <link href="./node_modules/cropperjs/dist/cropper.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     </head>
     <body>
-        <div class="container">
-            <div class="wrapper">
-                <div id="content">
+        <!-- Main image input -->
+        <section class="container">
+            <div id="image_box" class="box">
+                <div id="is_noimage">
                     <div class="icon">
                         <i class="fas fa-cloud-upload-alt"></i>
                     </div>
                     <div class="text">No file chosen, yet!</div>
                 </div>
             </div>
-            <button onclick="getInput()" class="modal_btn">Choose a file</button>
+            <button onclick="getInput()" class="btn">Choose a file</button>
             <input id="input_field" type="file" hidden />
-        </div>
+        </section>
 
         <!-- Modal and Modal Background -->
         <div id="modal-container">
@@ -28,14 +30,14 @@
                     <img id="profile" src="" alt="" />
                 </div>
                 <div id="modified-profile"></div>
-                <button id="crop-btn">Crop</button>
+                <button id="crop-btn" class="btn">Crop</button>
                 <div id="mask-btn">
                     <img id="hardMask" src="./asset/user_image_frame_1.png" alt="" />
                     <img id="squireMask" src="./asset/user_image_frame_2.png" alt="" />
                     <img id="circleMask" src="./asset/user_image_frame_3.png" alt="" />
                     <img id="areaMask" src="./asset/user_image_frame_4.png" alt="" />
                 </div>
-                <button id="mask-done">Done</button>
+                <button id="mask-done" class="btn" style="display: none">Done</button>
             </div>
         </div>
 
