@@ -27,7 +27,8 @@ inputField.addEventListener("change", (event) => {
         // Crop image
         options = {
             aspectRatio: 1,
-            viewMode: 0,
+            viewMode: 1,
+            responsive: true,
         };
         const cropper = new Cropper(profile, options);
         cropBtn.addEventListener("click", () => {
@@ -75,6 +76,7 @@ inputField.addEventListener("change", (event) => {
 
 window.addEventListener("click", function (e) {
     if (e.target === modalContainer) {
+        profile.src = "";
         modalContainer.style.display = "none";
     }
 });
